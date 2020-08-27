@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Parent window</title>
+		<style>
+		h1 {
+			text-align: center;
+			color: #4d4d4d;
+			font-size: 24px;
+			padding: 20px 0 20px 0;
+		}
+		
+		.form input[type="button"] {
+			width: 100%;
+			padding: 15px;
+			background-color: #535b63;
+			border: 0;
+			box-sizing: border-box;
+			cursor: pointer;
+			font-weight: bold;
+			color: #ffffff;
+		}
+		</style>
+	</head>
+	<body>
+        <script>	
+            function listen(){
+                window.open("http://child.window:8000/child/login.html", "popup", "width=1250,height=800")
+                window.addEventListener("message", (event) => {
+                    document.getElementById("text").innerHTML = "Entered username: " + event.data.username
+                    document.getElementById("loginbutton").style.visibility = "hidden"
+                    document.getElementById("loginbutton").style.display = "none"
+                })
+};
+        </script>
+		<div class="form">
+			<h1 id="text">Log in with your credentials</h1>
+			<form>
+				<input type="button" value="Login" onclick="listen()" id="loginbutton">
+			</form>
+		</div>
+	</body>
+</html>

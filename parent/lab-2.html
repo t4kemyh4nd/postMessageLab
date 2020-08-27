@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Parent window</title>
+		<style>
+            .login-form {
+                width: 300px;
+                margin: 0 auto;
+                font-family: Tahoma, Geneva, sans-serif;
+            }
+            .login-form h1 {
+                text-align: center;
+                color: #4d4d4d;
+                font-size: 24px;
+                padding: 20px 0 20px 0;
+            }
+            .login-form input[type="password"],
+            .login-form input[type="text"] {
+                width: 100%;
+                padding: 15px;
+                border: 1px solid #dddddd;
+                margin-bottom: 15px;
+                box-sizing:border-box;
+            }
+            .login-form input[type="button"] {
+                width: 100%;
+                padding: 15px;
+                background-color: #535b63;
+                border: 0;
+                box-sizing: border-box;
+                cursor: pointer;
+                font-weight: bold;
+                color: #ffffff;
+            }
+            </style>
+	</head>
+	<body>
+        <script>	
+            function post(){
+                var w = window.open("http://child.window:8000/child/contact.html", "popup", "width=600,height=600")
+                alert("Send details to contact form?")
+                w.postMessage({fname:document.getElementById("fname").value, lname:document.getElementById("lname").value}, "*")
+                document.getElementById("submitbutton").style.visibility = "hidden"
+                document.getElementById("submitbutton").style.display = "none"
+                document.getElementById("text").innerHTML = "Populating contact form with your details"
+            }
+        </script>
+		<div class="login-form">
+			<h1 id="text">Enter your personal details</h1>
+			<form>
+				<input type="text" id="fname" name="fname" placeholder="First name" required>
+				<input type="text" id="lname" name="lname" placeholder="Last name" required>
+				<input type="button" value="Submit details" onclick="post()" id="submitbutton">
+			</form>
+		</div>
+	</body>
+</html>
